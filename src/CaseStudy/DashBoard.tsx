@@ -45,7 +45,7 @@ const Dashboard = () => {
             </Grow>
             <Grow in timeout={1600}>
             <Link to={routes.Case_4}>
-              <StyledButton>Case study 3</StyledButton>
+              <StyledButton>Case study 4</StyledButton>
               </Link>
               
             </Grow>
