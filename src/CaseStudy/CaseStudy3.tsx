@@ -111,6 +111,7 @@ export default function CaseStudy3() {
     setIsDrawerOpen1(false);
   };
   const [isHovered2, setIsHovered2] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const boxStyle = {
     maxWidth: 255,
@@ -321,30 +322,58 @@ export default function CaseStudy3() {
               <Box width={"100%"} border={"1px solid #0091f0"}></Box>
 
               <Stack
-                padding={"0 50px"}
-                margin={"0 auto"}
-                direction={"row"}
-                spacing={2}
-              >
-                {Text.map((item, index) => (
-                  <Box key={index} display={"flex"} mb={3}>
-                    <Stack
-                      height={180}
-                      onMouseOver={() => setIsHovered2(true)}
-                      onMouseOut={() => setIsHovered2(false)}
-                      style={boxStyle}
-                      borderRadius={"30px"}
-                      padding={2}
-                      spacing={6}
-                      bgcolor="white"
-                      border="1px solid gray"
+                  padding={"0 50px"}
+                  margin={"0 auto"}
+                  direction={"row"}
+                  mt={4}
+                  mb={4}
+                  spacing={5}
+                >
+                  {Text.map((item, index) => (
+                    <Box
+                      key={index}
+                      display={"flex"}
+                      mb={3}
+                      onMouseOver={() => setHoveredIndex(index)}
+                      onMouseOut={() => setHoveredIndex(null)}
+                      style={{
+                        transition: "transform 0.3s", // Add smooth transition for the zoom effect
+                        transform:
+                          hoveredIndex === index ? "scale(1.1)" : "scale(1)",
+                      }}
                     >
-                      <Typography textAlign="left">{item.name}</Typography>
-                      <Typography textAlign="left">{item.paragraph}</Typography>
-                    </Stack>
-                  </Box>
-                ))}
-              </Stack>
+                      <Stack
+                        height={180}
+                        borderRadius={"30px"}
+                        padding={2}
+                        spacing={6}
+                        bgcolor={hoveredIndex === index ? "#0091F0" : "white"} // Change background color when hovered
+                        border="1px solid gray"
+                        boxShadow={
+                          hoveredIndex === index ? "0px 0px 10px 0px" : ""
+                        }
+                      >
+                        <Typography
+                          color={hoveredIndex === index ? "white" : "black"} // Change background color when hovered
+                          borderBottom={
+                            hoveredIndex === index
+                              ? "1px solid white"
+                              : "1px solid black"
+                          }
+                          textAlign="center"
+                        >
+                          {item.name}
+                        </Typography>
+                        <Typography
+                          color={hoveredIndex === index ? "white" : "black"} // Change background color when hovered
+                          textAlign="left"
+                        >
+                          {item.paragraph}
+                        </Typography>
+                      </Stack>
+                    </Box>
+                  ))}
+                </Stack>
             </section>
           </AnimatedText>
         </AnimatedContainer>
@@ -546,7 +575,7 @@ export default function CaseStudy3() {
                     >
                       OUR PLANS & PROCESS
                     </Typography>
-                    <Box width={"70%"} border={"1px solid #0091f0"}></Box>
+                    <Box width={"70%"} border={"1px solid #0091F0"}></Box>
                   </Box>
                   <Typography
                     gap={"2rem"}
@@ -586,6 +615,58 @@ export default function CaseStudy3() {
                     Complimentary Pickup – Delivery is complimentary from 24 hr
                     residential doorman buildings.
                   </Typography>
+                </Stack>
+                <Stack
+                  padding={"0 50px"}
+                  margin={"0 auto"}
+                  direction={"row"}
+                  mt={2}
+                  spacing={5}
+                >
+                  {Text.map((item, index) => (
+                    <Box
+                      key={index}
+                      display={"flex"}
+                      mb={3}
+                      onMouseOver={() => setHoveredIndex(index)}
+                      onMouseOut={() => setHoveredIndex(null)}
+                      style={{
+                        transition: "transform 0.3s", // Add smooth transition for the zoom effect
+                        transform:
+                          hoveredIndex === index ? "scale(1.1)" : "scale(1)",
+                      }}
+                    >
+                      <Stack
+                        height={180}
+                        borderRadius={"30px"}
+                        padding={2}
+                        spacing={6}
+                        bgcolor={hoveredIndex === index ? "#0091F0" : "white"} // Change background color when hovered
+                        border="1px solid gray"
+                        boxShadow={
+                          hoveredIndex === index ? "0px 0px 10px 0px" : ""
+                        }
+                      >
+                        <Typography
+                          color={hoveredIndex === index ? "white" : "black"} // Change background color when hovered
+                          borderBottom={
+                            hoveredIndex === index
+                              ? "1px solid white"
+                              : "1px solid black"
+                          }
+                          textAlign="center"
+                        >
+                          {item.name}
+                        </Typography>
+                        <Typography
+                          color={hoveredIndex === index ? "white" : "black"} // Change background color when hovered
+                          textAlign="left"
+                        >
+                          {item.paragraph}
+                        </Typography>
+                      </Stack>
+                    </Box>
+                  ))}
                 </Stack>
               </Stack>
             </section>
